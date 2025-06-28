@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人IP打造指南 - 从自我探索到变现</title>
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3f37c9;
+            --accent-color: #4895ef;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --success-color: #4cc9f0;
+        }
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--dark-color);
+            line-height: 1.8;
+            background-color: #f5f7fa;
+        }
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-align: center;
+            padding: 4rem 1rem;
+            position: relative;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        .header p {
+            margin: 1rem auto 0;
+            font-size: 1.2rem;
+            max-width: 700px;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        .container {
+            max-width: 900px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+        }
+        .step-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            border-left: 5px solid var(--accent-color);
+        }
+        .step-number {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-size: 5rem;
+            font-weight: 800;
+            color: rgba(72, 149, 239, 0.1);
+            line-height: 1;
+        }
+        .step-title {
+            color: var(--secondary-color);
+            margin: 0 0 1.5rem;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+        .action-box {
+            background: #f0f7ff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--accent-color);
+        }
+        .action-title {
+            font-weight: 600;
+            color: var(--secondary-color);
+            margin: 0 0 0.5rem;
+        }
+        .platform-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .platform-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+            border-top: 3px solid var(--accent-color);
+            transition: transform 0.3s ease;
+        }
+        .platform-card:hover {
+            transform: translateY(-5px);
+        }
+        .platform-card h4 {
+            margin: 0 0 0.5rem;
+            color: var(--primary-color);
+        }
+        .platform-card p {
+            margin: 0;
+            color: #666;
+            font-size: 0.95rem;
+        }
+        .checklist {
+            margin: 1.5rem 0;
+            padding-left: 1.5rem;
+        }
+        .checklist li {
+            margin-bottom: 0.8rem;
+            position: relative;
+            list-style-type: none;
+        }
+        .checklist li:before {
+            content: "✓";
+            color: var(--success-color);
+            font-weight: bold;
+            display: inline-block;
+            width: 1.5em;
+            margin-left: -1.5em;
+        }
+        .quote {
+            font-style: italic;
+            color: #555;
+            border-left: 3px solid var(--accent-color);
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+        }
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+            border-radius: 12px;
+            margin: 4rem 0;
+        }
+        .cta-title {
+            margin: 0 0 1.5rem;
+            font-size: 2rem;
+        }
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: var(--primary-color);
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            background: var(--dark-color);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        .home-link {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        .home-link:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        .footer-home-link {
+            color: #ddd;
+            text-decoration: none;
+            margin-top: 1rem;
+            display: inline-block;
+        }
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.2rem;
+            }
+            .step-card {
+                padding: 1.5rem;
+            }
+            .home-link {
+                top: 10px;
+                left: 10px;
+                font-size: 0.9rem;
+                padding: 6px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <!-- 添加在顶部左上角的返回主页链接 -->
+        <a href="https://www.junshen.top/" class="home-link">← 返回军神主页</a>
+        <h1>个人IP打造指南</h1>
+        <p>从自我探索到内容创作，再到产品变现的完整路径</p>
+    </div>
+
+    <div class="container">
+        <!-- 原有内容保持不变 -->
+        <div class="step-card">
+            <div class="step-number">1</div>
+            <h2 class="step-title">自我探索：发现你的独特价值</h2>
+            <p>不要急于定位，先回顾你的过往经历，找到那些：</p>
+            <ul class="checklist">
+                <li>你能够长期坚持的事情</li>
+                <li>朋友经常向你请教的问题</li>
+                <li>你做起来比别人轻松的事情</li>
+                <li>让你忘记时间的心流体验</li>
+                <li>曾经帮助过别人的成功案例</li>
+            </ul>
+            
+            <div class="action-box">
+                <div class="action-title">📌 行动步骤</div>
+                <p>拿出一张纸，写下你过去3年：</p>
+                <ol>
+                    <li>做过最有成就感的三件事</li>
+                    <li>帮助别人解决过的三个问题</li>
+                    <li>朋友最常向你请教的三个问题</li>
+                </ol>
+            </div>
+            
+            <div class="quote">
+                "个人IP不是创造出来的，而是从你已有的经历和特质中挖掘出来的。"
+            </div>
+        </div>
+
+        <div class="step-card">
+            <div class="step-number">2</div>
+            <h2 class="step-title">内容创作：从公开写作开始</h2>
+            <p>选择1-2个平台开始持续输出，记录你的思考、经验和成长：</p>
+            
+            <div class="platform-cards">
+                <div class="platform-card">
+                    <h4>微信公众号</h4>
+                    <p>适合深度内容，建立私域流量，变现方式多样</p>
+                </div>
+                <div class="platform-card">
+                    <h4>小红书</h4>
+                    <p>适合图文结合，女性用户多，种草效果好</p>
+                </div>
+                <div class="platform-card">
+                    <h4>视频号</h4>
+                    <p>微信生态内传播，适合有表现力的人</p>
+                </div>
+            </div>
+            
+            <div class="action-box">
+                <div class="action-title">📌 内容创作原则</div>
+                <ul class="checklist">
+                    <li>每周至少发布2-3次，保持稳定频率</li>
+                    <li>80%实用干货 + 20%个人故事</li>
+                    <li>用"问题-解决方案"结构组织内容</li>
+                    <li>收集读者反馈，观察哪些内容反响最好</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="step-card">
+            <div class="step-number">3</div>
+            <h2 class="step-title">复盘提炼：从内容到方法论</h2>
+            <p>通过持续输出和读者互动，你会发现：</p>
+            <ul class="checklist">
+                <li>哪些话题最能引起共鸣</li>
+                <li>你在哪些方面确实能帮到别人</li>
+                <li>读者愿意为什么样的价值付费</li>
+            </ul>
+            
+            <p>将这些发现提炼成可复用的方法论：</p>
+            <ol>
+                <li>整理你最受欢迎的3-5篇内容</li>
+                <li>分析这些内容的共同点</li>
+                <li>总结出可教给别人的步骤或框架</li>
+            </ol>
+            
+            <div class="action-box">
+                <div class="action-title">📌 方法论提炼模板</div>
+                <p><strong>问题：</strong> 你的目标群体面临什么具体问题？</p>
+                <p><strong>解决方案：</strong> 你用什么方法解决这个问题？</p>
+                <p><strong>步骤：</strong> 可以分解为哪几个可操作的步骤？</p>
+                <p><strong>案例：</strong> 你自己或他人应用成功的案例</p>
+            </div>
+        </div>
+
+        <div class="step-card">
+            <div class="step-number">4</div>
+            <h2 class="step-title">产品化：将你的价值转化为产品</h2>
+            <p>根据你的方法论和读者需求，设计变现产品：</p>
+            
+            <div class="platform-cards">
+                <div class="platform-card">
+                    <h4>1对1咨询</h4>
+                    <p>最适合起步的变现方式，直接解决具体问题</p>
+                </div>
+                <div class="platform-card">
+                    <h4>线上课程</h4>
+                    <p>将你的方法论系统化，录制成课程</p>
+                </div>
+                <div class="platform-card">
+                    <h4>社群服务</h4>
+                    <p>提供长期陪伴和指导，按月/年收费</p>
+                </div>
+            </div>
+            
+            <div class="action-box">
+                <div class="action-title">📌 最小可行产品(MVP)测试</div>
+                <ol>
+                    <li>先在小范围内提供付费服务(如朋友圈)</li>
+                    <li>收集用户反馈，迭代优化</li>
+                    <li>验证可行性后再规模化</li>
+                </ol>
+            </div>
+            
+            <div class="quote">
+                "不要等到完美才开始收费，只要你能提供比免费更有价值的东西，就值得收费。"
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2 class="cta-title">准备好开始打造你的个人IP了吗？</h2>
+            <p>从今天开始记录、分享，三个月后你会感谢现在的决定</p>
+            <a href="#" class="cta-button">立即开始内容创作</a>
+        </div>
+    </div>
+
+    <div class="footer">
+        &copy; 2023 个人IP打造指南 | 从自我探索到价值变现
+        <!-- 添加在底部的返回主页链接 -->
+        <div>
+            <a href="https://www.junshen.top/" class="footer-home-link">返回军神主页 →</a>
+        </div>
+    </div>
+</body>
+</html>
