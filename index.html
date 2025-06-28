@@ -3,45 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>军神老王队长 - 个人主页</title>
+    <title>王忠明 - 从军官到创业者的转型之路</title>
     <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #e74c3c;
+            --accent-color: #f39c12;
+            --light-color: #ecf0f1;
+            --dark-color: #34495e;
+        }
         body {
-            font-family: 'Microsoft YaHei', sans-serif;
+            font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f0f0;
             color: #333;
+            line-height: 1.6;
+            background-color: #f5f5f5;
         }
         .header {
-            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
             color: white;
             text-align: center;
-            padding: 2rem 0;
+            padding: 3rem 0;
             position: relative;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
         .header h1 {
             margin: 0;
-            font-size: 2.5rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            font-size: 2.8rem;
+            font-weight: 700;
         }
         .header p {
             margin: 0.5rem 0 0;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             opacity: 0.9;
+            font-weight: 300;
         }
         .container {
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 2rem auto;
-            padding: 0 1rem;
+            padding: 0 1.5rem;
         }
-        .profile {
-            display: flex;
+        .profile-card {
             background: white;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             overflow: hidden;
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
+            display: flex;
         }
         .profile-image {
             flex: 0 0 300px;
@@ -55,106 +64,274 @@
         }
         .profile-content {
             flex: 1;
+            padding: 2.5rem;
+        }
+        .section {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             padding: 2rem;
-        }
-        .section-title {
-            border-left: 4px solid #b21f1f;
-            padding-left: 1rem;
-            margin: 2rem 0 1rem;
-            font-size: 1.5rem;
-        }
-        .skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
             margin-bottom: 2rem;
         }
-        .skill {
-            background: #1a2a6c;
+        .section-title {
+            color: var(--secondary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+            margin: 0 0 1.5rem;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+        .highlight {
+            background-color: #fffde7;
+            padding: 1.5rem;
+            border-left: 4px solid var(--accent-color);
+            margin: 1.5rem 0;
+            font-size: 1.1rem;
+        }
+        .timeline {
+            position: relative;
+            padding-left: 50px;
+        }
+        .timeline:before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--accent-color);
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: -38px;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--secondary-color);
+            border: 3px solid white;
+        }
+        .timeline-year {
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+        .business-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        .business-card {
+            background: var(--light-color);
+            padding: 1.5rem;
+            border-radius: 6px;
+            border-left: 4px solid var(--accent-color);
+        }
+        .business-card h4 {
+            margin: 0 0 0.5rem;
+            color: var(--primary-color);
+        }
+        .business-card p {
+            margin: 0;
+            color: #666;
+        }
+        .insights {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        .insight-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 6px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            border-top: 3px solid var(--accent-color);
+        }
+        .insight-card h4 {
+            margin: 0 0 1rem;
+            color: var(--secondary-color);
+        }
+        .cta {
+            background: linear-gradient(135deg, var(--secondary-color), #c0392b);
             color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
+            text-align: center;
+            padding: 3rem 2rem;
+            border-radius: 8px;
+            margin: 3rem 0;
+        }
+        .cta h2 {
+            margin: 0 0 1.5rem;
+            font-size: 2rem;
+        }
+        .cta-btn {
+            display: inline-block;
+            background: white;
+            color: var(--secondary-color);
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
         .footer {
             text-align: center;
-            padding: 1.5rem;
-            background: #333;
-            color: #aaa;
+            padding: 2rem;
+            background: var(--dark-color);
+            color: #bbb;
             font-size: 0.9rem;
         }
-        .military-badge {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            width: 60px;
-            height: 60px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-        }
         @media (max-width: 768px) {
-            .profile {
+            .profile-card {
                 flex-direction: column;
             }
             .profile-image {
-                flex: 0 0 200px;
+                flex: 0 0 250px;
+            }
+            .header h1 {
+                font-size: 2.2rem;
             }
         }
     </style>
 </head>
 <body>
     <div class="header">
-        <div class="military-badge">★</div>
-        <h1>军神老王队长</h1>
-        <p>铁血军魂 · 忠诚卫士 · 团队领袖</p>
+        <h1>王忠明</h1>
+        <p>从军官到创业者 · 副业实战专家 · 内容创业者</p>
     </div>
 
     <div class="container">
-        <div class="profile">
+        <div class="profile-card">
             <div class="profile-image">
-                <!-- 这里可以替换为您的实际图片 -->
-                <img src="https://via.placeholder.com/300x400/1a2a6c/ffffff?text=军神老王" alt="军神老王队长">
+                <!-- 替换为您的真实照片 -->
+                <img src="https://via.placeholder.com/300x400/2c3e50/ffffff?text=王忠明" alt="王忠明">
             </div>
             <div class="profile-content">
-                <h2>个人简介</h2>
-                <p>我是军神老王队长，拥有20年军旅生涯，曾任特种部队指挥官，具备卓越的领导能力和战略思维。在多次重大任务中表现出色，荣获多项荣誉勋章。现致力于军事训练和团队建设，培养新一代军事人才。</p>
+                <h2>我的故事</h2>
+                <p>2008年上军校，2012年开始担任排长、连长、指导员。2021年，为了家庭和孩子，选择转业创业。在部队期间，业余时间做了几十个副业，写了300万字的自媒体文章，副业收益曾超过主业。现在专注于公众号爆款文章写作和小红书开店，与团队一起开发内容产品，帮助更多人实现副业收入。</p>
                 
-                <h3>核心能力</h3>
-                <div class="skills">
-                    <div class="skill">特种作战指挥</div>
-                    <div class="skill">战术规划</div>
-                    <div class="skill">危机处理</div>
-                    <div class="skill">团队建设</div>
-                    <div class="skill">军事训练</div>
-                    <div class="skill">战略分析</div>
+                <div class="highlight">
+                    <strong>人生信条：</strong> 日常累积才是机会，只要能够承受损失，就应该多尝试。没有挑战的人生是没有意义的。
                 </div>
             </div>
         </div>
 
-        <h2 class="section-title">军事生涯</h2>
-        <p>1999年入伍，历任排长、连长、营长，2015年起担任特种作战大队队长。参与过多次重大军事演习和实战任务，具有丰富的作战指挥经验。</p>
+        <div class="section">
+            <h2 class="section-title">我的经历</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">2008年</div>
+                    <p>进入军校学习，开始军旅生涯</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2012年</div>
+                    <p>担任排长，开始军官生涯</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2012-2021年</div>
+                    <p>历任排长、连长、指导员，同时在业余时间开展多种副业</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2021年</div>
+                    <p>为了家庭和孩子，选择转业创业</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">现在</div>
+                    <p>带领团队专注于公众号爆款文章写作和小红书开店</p>
+                </div>
+            </div>
+        </div>
 
-        <h2 class="section-title">荣誉与成就</h2>
-        <ul>
-            <li>3次荣获个人一等功</li>
-            <li>5次荣获集体二等功</li>
-            <li>全军优秀指挥员称号</li>
-            <li>特种作战比武冠军</li>
-            <li>军事理论创新奖</li>
-        </ul>
+        <div class="section">
+            <h2 class="section-title">我做过的副业</h2>
+            <div class="business-list">
+                <div class="business-card">
+                    <h4>社交电商</h4>
+                    <p>小米、每日一淘等平台</p>
+                </div>
+                <div class="business-card">
+                    <h4>POS机推广</h4>
+                    <p>最好时每天收益上千元</p>
+                </div>
+                <div class="business-card">
+                    <h4>微商</h4>
+                    <p>泰国佛牌，代理日收入5000+</p>
+                </div>
+                <div class="business-card">
+                    <h4>共享纸巾机</h4>
+                    <p>新型共享经济尝试</p>
+                </div>
+                <div class="business-card">
+                    <h4>个人WAP网站</h4>
+                    <p>早期移动互联网尝试</p>
+                </div>
+                <div class="business-card">
+                    <h4>手机卡/二手手机</h4>
+                    <p>电子产品交易业务</p>
+                </div>
+            </div>
+        </div>
 
-        <h2 class="section-title">联系方式</h2>
-        <p>邮箱: wang.captain@military.com</p>
-        <p>电话: 138-XXXX-XXXX</p>
-        <p>地址: 中国某军区特种作战基地</p>
+        <div class="section">
+            <h2 class="section-title">我的经验总结</h2>
+            <div class="insights">
+                <div class="insight-card">
+                    <h4>机会与准备</h4>
+                    <p>机会不会等待完全准备好的人。我的同事想离开部队但没有准备好，导致不敢行动或不知道做什么。</p>
+                </div>
+                <div class="insight-card">
+                    <h4>日常累积</h4>
+                    <p>读书、写作、表达、实战赚钱能力都需要日积月累。别人娱乐时，我在学习和做副业。</p>
+                </div>
+                <div class="insight-card">
+                    <h4>勇于尝试</h4>
+                    <p>只要能够承受损失，就应该多尝试。无论是副业还是追求女孩，行动比完美准备更重要。</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">人生选择</h2>
+            <p>如果我现在还在部队：</p>
+            <ul>
+                <li>每天带兵训练</li>
+                <li>偶尔做个副业</li>
+                <li>经常看不到孩子，甚至回到家孩子都不愿意和我亲近</li>
+            </ul>
+            <p>人生需要挑战：家庭的挑战、社会的挑战、工作的挑战。没有挑战的人生是没有意义的。军校的训练、部队带兵、社会上搞钱，都是挑战。</p>
+        </div>
+
+        <div class="cta">
+            <h2>现在我和团队的主要业务</h2>
+            <p>1. 公众号爆款文章写作</p>
+            <p>2. 小红书开店</p>
+            <p><strong>合作模式：</strong> 我们负责开发产品、生产内容；您负责注册账号、发布，最终一起分钱。</p>
+            <a href="#contact" class="cta-btn">立即联系合作</a>
+        </div>
+
+        <div id="contact" class="section">
+            <h2 class="section-title">联系方式</h2>
+            <p>邮箱: your.email@example.com</p>
+            <p>电话: 138-XXXX-XXXX</p>
+            <p>微信: 扫描下方二维码添加</p>
+            <!-- 这里可以添加微信二维码图片 -->
+            <img src="https://via.placeholder.com/150/2c3e50/ffffff?text=微信二维码" alt="微信二维码" style="margin: 1rem 0;">
+        </div>
     </div>
 
     <div class="footer">
-        &copy; 2023 军神老王队长 - 保家卫国，使命必达
+        &copy; 2023 王忠明 - 从军官到创业者的转型之路 | 人生需要挑战，行动创造可能
     </div>
 </body>
 </html>
