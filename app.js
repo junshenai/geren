@@ -39,8 +39,18 @@ document.getElementById('uploadForm').addEventListener('submit', async (e) => {
 
     async function parsePdf(file) {
         const dataBuffer = await file.arrayBuffer();
-        const data = await pdfParse(dataBuffer);
-        return data.text;
+        const loadingTask = pdfjsLib.getDocument({ data: dataBuffer });
+        const pdfDocument = await loadingTask.promise;
+        let textContent = '';
+
+        for (let pageNum = 1; pageNum <= pdfDocument.numPages; pageNum++) {
+            const page = await pdfDocument.getPage(pageNum);
+            const content = await page.getTextContent();
+            const pageText = content.items.map(item => item.str).join(' ');
+            textContent += pageText + '\n\n';
+        }
+
+        return textContent;
     }
 
     async function generateWordDocument(text, originalName) {
