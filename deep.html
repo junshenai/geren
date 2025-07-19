@@ -280,7 +280,7 @@
                 </div>
                 <button type="submit" class="btn">登录</button>
             </form>
-            <p style="margin-top: 15px; text-align: center; color: #666;">提示: 默认密码为 'admin123'</p>
+            <p style="margin-top: 15px; text-align: center; color: #666;">提示: 默认密码为找管理员'</p>
         </div>
 
         <!-- 主页面 -->
@@ -693,7 +693,7 @@
             const password = passwordInput.value;
 
             // 这里只是示例，实际应用中应该使用更安全的方式
-            if (password === 'admin123') {
+            if (password === 'admin789') {
                 isAdmin = true;
                 localStorage.setItem('isAdmin', 'true');
                 loginPage.style.display = 'none';
