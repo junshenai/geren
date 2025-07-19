@@ -280,7 +280,7 @@
                 </div>
                 <button type="submit" class="btn">登录</button>
             </form>
-            <p style="margin-top: 15px; text-align: center; color: #666;">提示: 默认密码为找管理员'</p>
+            <p style="margin-top: 15px; text-align: center; color: #666;">提示: 默认密码找管理员'</p>
         </div>
 
         <!-- 主页面 -->
@@ -529,29 +529,32 @@
             // 确保文件列表已加载
             loadFiles();
             
-            const file = files.find(f => f.id === fileId);
-            if (!file) {
-                showAlert('错误', '找不到指定的文件', 'error');
-                return;
-            }
+            // 等待文件加载完成
+            setTimeout(() => {
+                const file = files.find(f => f.id === fileId);
+                if (!file) {
+                    showAlert('错误', '找不到指定的文件', 'error');
+                    return;
+                }
 
-            // 创建一个只包含预览iframe的页面
-            appContainer.innerHTML = `
-                <div style="margin: 0; padding: 0; height: 100vh;">
-                    <iframe src="" id="direct-preview-iframe" style="width: 100%; height: 100%; border: none;"></iframe>
-                </div>
-            `;
+                // 创建一个只包含预览iframe的页面
+                appContainer.innerHTML = `
+                    <div style="margin: 0; padding: 0; height: 100vh;">
+                        <iframe src="" id="direct-preview-iframe" style="width: 100%; height: 100%; border: none;"></iframe>
+                    </div>
+                `;
 
-            const directPreviewIframe = document.getElementById('direct-preview-iframe');
-            const blob = new Blob([file.content], { type: 'text/html' });
-            const url = URL.createObjectURL(blob);
-            directPreviewIframe.src = url;
+                const directPreviewIframe = document.getElementById('direct-preview-iframe');
+                const blob = new Blob([file.content], { type: 'text/html' });
+                const url = URL.createObjectURL(blob);
+                directPreviewIframe.src = url;
 
-            // 隐藏底部导航
-            const footerNav = document.querySelector('.footer-nav');
-            if (footerNav) {
-                footerNav.style.display = 'none';
-            }
+                // 隐藏底部导航
+                const footerNav = document.querySelector('.footer-nav');
+                if (footerNav) {
+                    footerNav.style.display = 'none';
+                }
+            }, 100);
         }
 
         // 显示重命名模态框
@@ -693,7 +696,7 @@
             const password = passwordInput.value;
 
             // 这里只是示例，实际应用中应该使用更安全的方式
-            if (password === 'admin789') {
+            if (password === 'admin987') {
                 isAdmin = true;
                 localStorage.setItem('isAdmin', 'true');
                 loginPage.style.display = 'none';
