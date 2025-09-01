@@ -274,49 +274,259 @@
         </div>
 
         <!-- 新增工具合集栏目 -->
-        <div class="tools-section">
-            <h2 class="section-title">开发工具合集</h2>
+       <!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>开发工具合集 - 实用工具集合</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header p {
+            color: #7f8c8d;
+            font-size: 1.2em;
+        }
+
+        .tools-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            color: #2c3e50;
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .tools-section > p {
+            color: #7f8c8d;
+            font-size: 1.1em;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            justify-items: center;
+        }
+
+        .tool-card {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid #dee2e6;
+            width: 100%;
+            max-width: 350px;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .tool-card h4 {
+            color: #2c3e50;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .tool-card:hover h4 {
+            color: white;
+        }
+
+        .tool-card p {
+            color: #6c757d;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            font-size: 1em;
+        }
+
+        .tool-card:hover p {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .tool-link {
+            display: inline-block;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .tool-card:hover .tool-link {
+            background: white;
+            color: #667eea;
+            transform: scale(1.05);
+        }
+
+        .tool-link:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .tools-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .tool-card {
+                max-width: 100%;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .tools-section {
+                padding: 20px;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .tools-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* 动画效果 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .tool-card {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .tool-card:nth-child(1) { animation-delay: 0.1s; }
+        .tool-card:nth-child(2) { animation-delay: 0.2s; }
+        .tool-card:nth-child(3) { animation-delay: 0.3s; }
+        .tool-card:nth-child(4) { animation-delay: 0.4s; }
+        .tool-card:nth-child(5) { animation-delay: 0.5s; }
+        .tool-card:nth-child(6) { animation-delay: 0.6s; }
+        .tool-card:nth-child(7) { animation-delay: 0.7s; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-tools"></i> 开发工具合集</h1>
             <p>以下是我开发和收集的实用工具，持续更新中...</p>
-            <div class="tools-grid">
-                <div class="tool-card">
-                    <h4>斜视训练工具</h4>
-                    <p>帮助斜视人群的实用工具</p>
-                    <a href="xieshi.html" class="tool-link">立即使用</a>
-                </div>     
-            <div class="tools-grid">
-                <div class="tool-card">
-                    <h4>家庭教育工具</h4>
-                    <p>帮助你教育和管理孩子的实用工具</p>
-                    <a href="jiating.html" class="tool-link">立即使用</a>
-                </div>
-                       
+        </div>
+
+        <div class="tools-section">
+            <h2 class="section-title">实用工具集合</h2>
+            <p>精选高效工具，助您提升生活品质和工作效率</p>
             
             <div class="tools-grid">
                 <div class="tool-card">
-                    <h4>个人IP打造工具</h4>
-                    <p>帮助你快速打造个人品牌，建立影响力的一套方法论和实用工具</p>
-                    <a href="ger.html" class="tool-link">立即使用</a>
-                </div>
-                
-                <div class="tool-card">
-                    <h4>分贝测试工具</h4>
-                    <p>专业的音频分析工具，可用于环境噪音检测、声音质量评估等场景</p>
-                    <a href="fenbei.html" class="tool-link">立即使用</a>
+                    <h4>斜视训练工具</h4>
+                    <p>帮助斜视人群的实用工具，包含眼球运动、集合训练、双眼融合、立体视觉等四大专业训练模块</p>
+                    <a href="斜视训练.html" class="tool-link">立即使用</a>
                 </div>
 
-                   <div class="tool-card">
-                    <h4>高效能人士工具</h4>
-                    <p>按照高效能人士工作习惯开发</p>
-                    <a href="qige.html" class="tool-link">立即使用</a>
-                </div>
-                 <div class="tool-card">
-                    <h4>心理测试90项</h4>
-                    <p>按照国际心理自测试标准开发</p>
-                    <a href="scl90.html" class="tool-link">立即使用</a>
-                </div>
                 <div class="tool-card">
-                    <h4>更多工具开发中</h4>
-                    <p>我们正在开发更多实用工具，敬请期待...</p>
+                    <h4>家庭教育工具</h4>
+                    <p>帮助你教育和管理孩子的实用工具，包含家庭仪表板、每日任务、运动计划、阅读追踪等核心功能</p>
+                    <a href="家庭教育平台.html" class="tool-link">立即使用</a>
+                </div>
+
+                <div class="tool-card">
+                    <h4>个人IP打造工具</h4>
+                    <p>帮助你快速打造个人品牌，建立影响力的一套方法论和实用工具，全方位提升个人价值</p>
+                    <a href="护眼博主.html" class="tool-link">立即使用</a>
+                </div>
+
+                <div class="tool-card">
+                    <h4>在线视力检测</h4>
+                    <p>专业的视力检测工具，包含标准对数视力表、色盲色弱测试、散光检测、结果分析等完整功能</p>
+                    <a href="在线视力检测.html" class="tool-link">立即使用</a>
+                </div>
+
+                <div class="tool-card">
+                    <h4>高效能人士工具</h4>
+                    <p>按照高效能人士工作习惯开发，集成时间管��、任务规划、效率提升等实用功能</p>
+                    <a href="用眼监测系统.html" class="tool-link">立即使用</a>
+                </div>
+
+                <div class="tool-card">
+                    <h4>眼部结构图</h4>
+                    <p>3D交互式眼部结构图，包含完整解剖结构、实时高亮、专业科普内容，适合医学教育使用</p>
+                    <a href="眼部结构图.html" class="tool-link">立即使用</a>
+                </div>
+
+                <div class="tool-card">
+                    <h4>客户展示系统</h4>
+                    <p>专业的产品展示工具，支持产品展示、客户评价、特色功能展示，适用于商业演示场景</p>
+                    <a href="客户展示.html" class="tool-link">立即使用</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
                     <a href="#contact" class="tool-link">联系获取更新</a>
                 </div>
             </div>
