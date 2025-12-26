@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小学生学习工具集合</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        h1 {
+            text-align: center;
+            color: #667eea;
+            font-size: 36px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        .description {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 18px;
+        }
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        .tool-card {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .tool-card:nth-child(2) {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+        .tool-card:nth-child(3) {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+        .tool-card:nth-child(4) {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+        .tool-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        .tool-icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+            display: block;
+        }
+        .tool-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .tool-description {
+            font-size: 16px;
+            opacity: 0.9;
+            line-height: 1.4;
+        }
+        .feature-section {
+            margin: 50px 0;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 15px;
+        }
+        .feature-title {
+            text-align: center;
+            color: #667eea;
+            font-size: 28px;
+            margin-bottom: 30px;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .feature-item {
+            text-align: center;
+            padding: 20px;
+        }
+        .feature-icon {
+            font-size: 40px;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+        .feature-text {
+            font-size: 16px;
+            color: #666;
+        }
+        .footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        .contact-info {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #888;
+        }
+        .update-info {
+            background: #e8f5e8;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 20px 0;
+            border-left: 5px solid #4caf50;
+        }
+        .update-info h3 {
+            margin: 0 0 10px 0;
+            color: #4caf50;
+        }
+        .update-info p {
+            margin: 5px 0;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎓 小学生学习工具集合</h1>
+        <div class="description">
+            专为小学生设计的趣味学习工具，让学习变得轻松愉快！
+        </div>
+        
+        <div class="update-info">
+            <h3>✨ 最新更新</h3>
+            <p>📅 2025年12月25日 - 新增拼音练习工具</p>
+            <p>🔧 包含乘法表生成器、拼音练习等实用工具</p>
+            <p>🎨 界面友好，操作简单，适合小学生使用</p>
+        </div>
+        
+        <div class="tools-grid">
+            <a href="multiplication-table.html" class="tool-card">
+                <span class="tool-icon">🔢</span>
+                <div class="tool-title">乘法表生成器</div>
+                <div class="tool-description">
+                    轻松生成1-12的乘法表，支持自定义范围，帮助你快速掌握乘法口诀！
+                </div>
+            </a>
+            
+            <a href="pinyin-practice.html" class="tool-card">
+                <span class="tool-icon">🔤</span>
+                <div class="tool-title">拼音练习工具</div>
+                <div class="tool-description">
+                    有趣的拼音练习，包含拼音→汉字、汉字→拼音等多种练习模式！
+                </div>
+            </a>
+            
+            <a href="volume-meter.html" class="tool-card">
+                <span class="tool-icon">🔊</span>
+                <div class="tool-title">音量分贝测量</div>
+                <div class="tool-description">
+                    实时监测环境音量，帮助你保持自习室安静，适合学习和考试！
+                </div>
+            </a>
+            
+            <a href="script-script.html" class="tool-card">
+                <span class="tool-icon">📝</span>
+                <div class="tool-title">教师训练逐字稿</div>
+                <div class="tool-description">
+                    用于教师教学训练的逐字稿编辑、预览和管理工具，可定制！
+                </div>
+            </a>
+            
+            <a href="#" class="tool-card" onclick="alert('该功能正在开发中，敬请期待！')">
+                <span class="tool-icon">➕➖</span>
+                <div class="tool-title">数学运算练习</div>
+                <div class="tool-description">
+                    包含加减乘除四种运算，支持自定义难度，让数学练习更有趣！
+                </div>
+            </a>
+            
+            <a href="#" class="tool-card" onclick="alert('该功能正在开发中，敬请期待！')">
+                <span class="tool-icon">📚</span>
+                <div class="tool-title">汉字练习</div>
+                <div class="tool-description">
+                    学习常用汉字，包含笔画顺序、组词等功能，帮助你轻松识字！
+                </div>
+            </a>
+        </div>
+        
+        <div class="feature-section">
+            <h2 class="feature-title">🌟 工具特点</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <span class="feature-icon">🎨</span>
+                    <div class="feature-text">
+                        <strong>界面友好</strong><br>
+                        色彩鲜艳，布局清晰，适合小学生使用
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">🎮</span>
+                    <div class="feature-text">
+                        <strong>操作简单</strong><br>
+                        一键生成，自动出题，无需复杂设置
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">📊</span>
+                    <div class="feature-text">
+                        <strong>实时统计</strong><br>
+                        记录学习进度，查看正确率，了解学习情况
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">📱</span>
+                    <div class="feature-text">
+                        <strong>响应式设计</strong><br>
+                        支持电脑、平板、手机等多种设备
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="feature-section">
+            <h2 class="feature-title">📖 使用说明</h2>
+            <ol style="line-height: 1.8; color: #666; font-size: 16px;">
+                <li>点击上方工具卡片进入相应的学习工具</li>
+                <li>根据提示进行操作，生成学习内容或开始练习</li>
+                <li>完成练习后查看统计结果，了解学习情况</li>
+                <li>可以随时切换不同的工具进行学习</li>
+            </ol>
+        </div>
+        
+        <div style="background: #fff3cd; padding: 15px; border-radius: 8px; margin: 20px 0; text-align: center; font-weight: bold; color: #856404; border: 1px solid #ffeeba;">
+            💡 教学提效工具定制，教学ppt定制，可以联系小红书店铺客服。
+        </div>
+        
+        <div class="footer">
+            <p>📚 小学生学习工具集合 - 让学习更有趣！</p>
+            <div class="contact-info">
+                <p>© 2025 小学生学习工具 | 专为小学生设计的学习助手</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
