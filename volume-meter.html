@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>自习安静测音量分贝工具</title>
+    <title>安静小森林 - 音量监测工具</title>
     <style>
         body {
             font-family: 'Microsoft YaHei', sans-serif;
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            background: linear-gradient(135deg, #87ceeb 0%, #98fb98 100%);
             margin: 0;
             padding: 20px;
             color: #333;
@@ -16,21 +16,22 @@
             max-width: 800px;
             margin: 0 auto;
             background: white;
-            border-radius: 15px;
+            border-radius: 20px;
             padding: 30px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
         h1 {
             text-align: center;
-            color: #6a11cb;
-            font-size: 28px;
+            color: #228b22;
+            font-size: 32px;
             margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
         .description {
             text-align: center;
             color: #666;
             margin-bottom: 30px;
-            font-size: 16px;
+            font-size: 18px;
         }
         .meter-container {
             text-align: center;
@@ -47,9 +48,9 @@
             height: 100%;
             border-radius: 50%;
             background: conic-gradient(
-                #4caf50 0deg 120deg,
+                #98fb98 0deg 120deg,
                 #ffeb3b 120deg 240deg,
-                #f44336 240deg 360deg
+                #ff6b6b 240deg 360deg
             );
             display: flex;
             align-items: center;
@@ -69,7 +70,7 @@
         .db-value {
             font-size: 48px;
             font-weight: bold;
-            color: #6a11cb;
+            color: #228b22;
         }
         .db-unit {
             font-size: 24px;
@@ -81,7 +82,7 @@
             margin: 20px 0;
         }
         .status-quiet {
-            color: #4caf50;
+            color: #228b22;
         }
         .status-normal {
             color: #ff9800;
@@ -94,20 +95,21 @@
             margin: 30px 0;
         }
         button {
-            background: #6a11cb;
+            background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
             color: white;
             border: none;
             padding: 12px 24px;
-            border-radius: 8px;
+            border-radius: 50px;
             font-size: 16px;
             cursor: pointer;
             margin: 0 10px 10px 0;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(76,175,80,0.3);
         }
         button:hover {
-            background: #5a0eb5;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(106,17,203,0.3);
+            background: linear-gradient(135deg, #45a049 0%, #3d8b40 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(76,175,80,0.4);
         }
         button:active {
             transform: translateY(0);
@@ -121,12 +123,14 @@
         .info-section {
             background: #f8f9fa;
             padding: 20px;
-            border-radius: 10px;
+            border-radius: 15px;
             margin: 30px 0;
+            border: 2px solid #e8f5e8;
         }
         .info-section h3 {
-            color: #6a11cb;
+            color: #228b22;
             margin-top: 0;
+            font-size: 20px;
         }
         .info-section ul {
             line-height: 1.8;
@@ -142,33 +146,114 @@
             display: inline-block;
             margin-top: 20px;
             padding: 10px 20px;
-            background: #6a11cb;
+            background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
             color: white;
             text-decoration: none;
-            border-radius: 8px;
+            border-radius: 50px;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(76,175,80,0.3);
         }
         .home-link:hover {
-            background: #5a0eb5;
-            transform: translateY(-2px);
+            background: linear-gradient(135deg, #45a049 0%, #3d8b40 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(76,175,80,0.4);
         }
         .custom-notice {
-            background: #fff3cd;
+            background: #e8f5e8;
             padding: 15px;
-            border-radius: 8px;
+            border-radius: 10px;
             margin: 20px 0;
             text-align: center;
             font-weight: bold;
-            color: #856404;
-            border: 1px solid #ffeeba;
+            color: #2e7d32;
+            border: 2px solid #c8e6c9;
+        }
+        /* 小森林样式 */
+        .forest-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            height: 300px;
+            margin: 40px 0;
+            padding: 20px;
+            background: linear-gradient(to top, #8d6e63 0%, #a1887f 100%);
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+        .forest-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 70%;
+            background: linear-gradient(to bottom, #87ceeb 0%, #b3e5fc 100%);
+            z-index: 0;
+        }
+        .tree {
+            margin: 0 10px;
+            position: relative;
+            z-index: 1;
+            transition: all 1s ease;
+        }
+        .tree-trunk {
+            width: 20px;
+            height: 80px;
+            background: #8d6e63;
+            border-radius: 10px 10px 0 0;
+        }
+        .tree-leaves {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #4caf50 0%, #81c784 100%);
+            border-radius: 50% 50% 0 0;
+            position: absolute;
+            bottom: 80px;
+            left: -40px;
+            transition: all 0.5s ease;
+        }
+        .tree.faded .tree-leaves {
+            background: #bdbdbd;
+            transform: scale(0.8);
+        }
+        .tree.growing .tree-leaves {
+            animation: pulse 1s ease-in-out;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        @media (max-width: 768px) {
+            .forest-container {
+                height: 200px;
+            }
+            .tree {
+                margin: 0 5px;
+            }
+            .tree-trunk {
+                width: 15px;
+                height: 60px;
+            }
+            .tree-leaves {
+                width: 80px;
+                height: 80px;
+                left: -32.5px;
+                bottom: 60px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>🔊 自习安静测音量分贝工具</h1>
+        <h1>🌲 安静小森林</h1>
         <div class="description">
-            实时监测环境音量，帮助你保持自习室安静！
+            保持安静，让小森林茁壮成长！吵闹会让小树消失哦～
+        </div>
+        
+        <div class="forest-container" id="forestContainer">
+            <!-- 小树将通过JavaScript动态生成 -->
         </div>
         
         <div class="meter-container">
@@ -184,7 +269,7 @@
             <div class="volume-status" id="volumeStatus">未开始测量</div>
             
             <div class="controls">
-                <button id="startBtn" onclick="startMeasurement()">▶️ 开始测量</button>
+                <button id="startBtn" onclick="startMeasurement()">🌱 开始测量</button>
                 <button id="stopBtn" onclick="stopMeasurement()" disabled>⏹️ 停止测量</button>
                 <button id="resetBtn" onclick="resetMeasurement()" disabled>🔄 重置</button>
             </div>
@@ -193,10 +278,10 @@
         <div class="info-section">
             <h3>📊 音量等级说明</h3>
             <ul>
-                <li><strong>安静 (0-50 dB)</strong>：适合自习、阅读、学习的理想环境</li>
-                <li><strong>正常 (51-70 dB)</strong>：轻微嘈杂，可能影响专注度</li>
-                <li><strong>嘈杂 (71-90 dB)</strong>：非常吵闹，不适合学习</li>
-                <li><strong>刺耳 (90+ dB)</strong>：可能对听力造成伤害</li>
+                <li><strong>安静 (0-50 dB)</strong>：🌲 小树快乐生长！</li>
+                <li><strong>正常 (51-70 dB)</strong>：⚠️ 小树有点不舒服</li>
+                <li><strong>嘈杂 (71-90 dB)</strong>：😢 小树开始消失了</li>
+                <li><strong>刺耳 (90+ dB)</strong>：🚫 小树都跑光了</li>
             </ul>
         </div>
         
@@ -204,7 +289,7 @@
             <h3>💡 使用提示</h3>
             <ul>
                 <li>点击"开始测量"按钮后，浏览器会请求麦克风权限，请允许</li>
-                <li>确保麦克风没有被其他应用占用</li>
+                <li>保持安静，让小森林茁壮成长</li>
                 <li>测量结果仅供参考，实际音量可能因设备差异有所不同</li>
             </ul>
         </div>
@@ -214,7 +299,7 @@
         </div>
         
         <div class="footer">
-            <p>📚 小学生学习工具 - 音量分贝测量</p>
+            <p>🌲 安静小森林 - 音量监测工具</p>
             <a href="xiaoxue.html" class="home-link">🏠 返回学习工具首页</a>
         </div>
     </div>
@@ -225,6 +310,26 @@
         let analyser;
         let dataArray;
         let animationFrame;
+        let trees = [];
+        let maxTrees = 8;
+        
+        // 初始化森林
+        function initForest() {
+            const forestContainer = document.getElementById('forestContainer');
+            forestContainer.innerHTML = '';
+            
+            trees = [];
+            for (let i = 0; i < maxTrees; i++) {
+                const tree = document.createElement('div');
+                tree.className = 'tree';
+                tree.innerHTML = `
+                    <div class="tree-trunk"></div>
+                    <div class="tree-leaves"></div>
+                `;
+                forestContainer.appendChild(tree);
+                trees.push(tree);
+            }
+        }
         
         function startMeasurement() {
             navigator.mediaDevices.getUserMedia({ audio: true })
@@ -243,6 +348,9 @@
                     document.getElementById('startBtn').disabled = true;
                     document.getElementById('stopBtn').disabled = false;
                     document.getElementById('resetBtn').disabled = false;
+                    
+                    // 初始化森林
+                    initForest();
                     
                     // 开始测量
                     measureVolume();
@@ -274,20 +382,67 @@
             // 更新显示
             document.getElementById('dbValue').textContent = displayDb;
             updateStatus(displayDb);
+            updateForest(displayDb);
         }
         
         function updateStatus(db) {
             const statusElement = document.getElementById('volumeStatus');
             
             if (db <= 50) {
-                statusElement.textContent = '✅ 安静 - 适合学习';
+                statusElement.textContent = '🌲 安静 - 小树快乐生长！';
                 statusElement.className = 'volume-status status-quiet';
             } else if (db <= 70) {
-                statusElement.textContent = '⚠️ 正常 - 轻微嘈杂';
+                statusElement.textContent = '⚠️ 正常 - 小树有点不舒服';
                 statusElement.className = 'volume-status status-normal';
             } else {
-                statusElement.textContent = '❌ 嘈杂 - 不适合学习';
+                statusElement.textContent = '😢 嘈杂 - 小树开始消失了！';
                 statusElement.className = 'volume-status status-loud';
+            }
+        }
+        
+        function updateForest(db) {
+            let activeTrees;
+            
+            if (db <= 50) {
+                // 安静 - 所有树都活跃
+                activeTrees = maxTrees;
+                trees.forEach((tree, index) => {
+                    if (index < activeTrees) {
+                        tree.classList.remove('faded');
+                        if (!tree.classList.contains('growing')) {
+                            tree.classList.add('growing');
+                            setTimeout(() => tree.classList.remove('growing'), 1000);
+                        }
+                    } else {
+                        tree.classList.add('faded');
+                    }
+                });
+            } else if (db <= 70) {
+                // 正常 - 大部分树活跃
+                activeTrees = Math.floor(maxTrees * 0.7);
+                trees.forEach((tree, index) => {
+                    if (index < activeTrees) {
+                        tree.classList.remove('faded');
+                    } else {
+                        tree.classList.add('faded');
+                    }
+                });
+            } else if (db <= 90) {
+                // 嘈杂 - 少数树活跃
+                activeTrees = Math.floor(maxTrees * 0.3);
+                trees.forEach((tree, index) => {
+                    if (index < activeTrees) {
+                        tree.classList.remove('faded');
+                    } else {
+                        tree.classList.add('faded');
+                    }
+                });
+            } else {
+                // 刺耳 - 没有树活跃
+                activeTrees = 0;
+                trees.forEach(tree => {
+                    tree.classList.add('faded');
+                });
             }
         }
         
@@ -316,7 +471,15 @@
             document.getElementById('volumeStatus').textContent = '未开始测量';
             document.getElementById('volumeStatus').className = 'volume-status';
             document.getElementById('resetBtn').disabled = true;
+            
+            // 重置森林
+            initForest();
         }
+        
+        // 页面加载时初始化
+        window.onload = function() {
+            initForest();
+        };
     </script>
 </body>
 </html>
