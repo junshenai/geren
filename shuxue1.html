@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>奥数思维乐园 - 二年级数学游戏</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', 'Arial Rounded MT Bold', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #e0f7fa 0%, #bbdefb 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #ff9800;
+            border-radius: 20px;
+            box-shadow: 0 8px 15px rgba(255, 152, 0, 0.3);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .header-icons {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2.5rem;
+            color: white;
+            opacity: 0.8;
+        }
+        
+        .stats-bar {
+            display: flex;
+            justify-content: space-between;
+            background-color: #4caf50;
+            color: white;
+            padding: 15px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 10px rgba(76, 175, 80, 0.3);
+        }
+        
+        .stat-item {
+            text-align: center;
+            flex: 1;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+        }
+        
+        .games-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .game-card {
+            background-color: white;
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            border: 5px solid transparent;
+        }
+        
+        .game-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .game-icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .game-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #2196f3;
+        }
+        
+        .game-card p {
+            font-size: 1rem;
+            margin-bottom: 20px;
+            color: #666;
+            line-height: 1.5;
+        }
+        
+        .difficulty {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin: 0 3px;
+            background-color: #ddd;
+        }
+        
+        .dot.filled {
+            background-color: #ff9800;
+        }
+        
+        .play-button {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .play-button i {
+            margin-right: 8px;
+        }
+        
+        .play-button:hover {
+            background-color: #388e3c;
+        }
+        
+        /* 游戏区域样式 */
+        .game-area {
+            display: none;
+            background-color: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 30px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .game-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px dashed #eee;
+        }
+        
+        .game-title {
+            font-size: 2rem;
+            color: #2196f3;
+        }
+        
+        .close-game {
+            background-color: #ff5252;
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .game-content {
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .problem {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            text-align: center;
+            padding: 20px;
+            background-color: #f5f5f5;
+            border-radius: 15px;
+            width: 100%;
+        }
+        
+        .options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            width: 100%;
+            max-width: 500px;
+            margin-bottom: 30px;
+        }
+        
+        .option {
+            padding: 20px;
+            font-size: 1.5rem;
+            background-color: #e3f2fd;
+            border: 3px solid #bbdefb;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+        
+        .option:hover {
+            background-color: #bbdefb;
+            transform: scale(1.05);
+        }
+        
+        .feedback {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            min-height: 50px;
+            text-align: center;
+        }
+        
+        .correct {
+            color: #4caf50;
+        }
+        
+        .incorrect {
+            color: #ff5252;
+        }
+        
+        .next-button {
+            background-color: #2196f3;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            cursor: pointer;
+            display: none;
+        }
+        
+        .progress-container {
+            width: 100%;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 20px;
+            background-color: #4caf50;
+            width: 0%;
+            transition: width 0.5s;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .games-container {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+            
+            header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .options {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .stats-bar {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .game-card {
+                padding: 20px;
+            }
+        }
+        
+        /* 奖励动画 */
+        @keyframes confetti {
+            0% { transform: translateY(0) rotate(0); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+        
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background-color: #f44336;
+            top: 0;
+            opacity: 0;
+            z-index: 1000;
+        }
+        
+        .reward-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #ffeb3b;
+            padding: 30px;
+            border-radius: 20px;
+            font-size: 2rem;
+            text-align: center;
+            z-index: 1001;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-icons">
+                <i class="fas fa-brain"></i>
+            </div>
+            <h1>奥数思维乐园</h1>
+            <p>欢迎来到二年级数学思维训练营！通过游戏提升你的数学思维能力，变得更快、更聪明！</p>
+        </header>
+        
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-value" id="score">0</div>
+                <div class="stat-label">总分</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="level">1</div>
+                <div class="stat-label">等级</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="streak">0</div>
+                <div class="stat-label">连续正确</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="games-played">0</div>
+                <div class="stat-label">游戏次数</div>
+            </div>
+        </div>
+        
+        <div class="games-container">
+            <div class="game-card" data-game="logic">
+                <div class="game-icon">
+                    <i class="fas fa-puzzle-piece" style="color: #ff9800;"></i>
+                </div>
+                <h3>逻辑推理</h3>
+                <p>通过图形和数字的规律，找出正确的答案，锻炼逻辑思维能力。</p>
+                <div class="difficulty">
+                    <div class="dot filled"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+                <button class="play-button"><i class="fas fa-play"></i>开始游戏</button>
+            </div>
+            
+            <div class="game-card" data-game="calculation">
+                <div class="game-icon">
+                    <i class="fas fa-calculator" style="color: #4caf50;"></i>
+                </div>
+                <h3>快速计算</h3>
+                <p>挑战加减乘除运算，提高计算速度和准确度。</p>
+                <div class="difficulty">
+                    <div class="dot filled"></div>
+                    <div class="dot filled"></div>
+                    <div class="dot"></div>
+                </div>
+                <button class="play-button"><i class="fas fa-play"></i>开始游戏</button>
+            </div>
+            
+            <div class="game-card" data-game="pattern">
+                <div class="game-icon">
+                    <i class="fas fa-shapes" style="color: #2196f3;"></i>
+                </div>
+                <h3>图形规律</h3>
+                <p>观察图形序列，发现其中的规律，预测下一个图形。</p>
+                <div class="difficulty">
+                    <div class="dot filled"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+                <button class="play-button"><i class="fas fa-play"></i>开始游戏</button>
+            </div>
+            
+            <div class="game-card" data-game="memory">
+                <div class="game-icon">
+                    <i class="fas fa-brain" style="color: #9c27b0;"></i>
+                </div>
+                <h3>记忆挑战</h3>
+                <p>记住数字和图形的位置，匹配相同的卡片，锻炼记忆力。</p>
+                <div class="difficulty">
+                    <div class="dot filled"></div>
+                    <div class="dot filled"></div>
+                    <div class="dot filled"></div>
+                </div>
+                <button class="play-button"><i class="fas fa-play"></i>开始游戏</button>
+            </div>
+        </div>
+        
+        <!-- 游戏区域 -->
+        <div class="game-area" id="game-area">
+            <div class="game-header">
+                <h2 class="game-title" id="game-title">逻辑推理游戏</h2>
+                <button class="close-game" id="close-game">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            
+            <div class="game-content">
+                <div class="problem" id="problem">问题加载中...</div>
+                
+                <div class="feedback" id="feedback"></div>
+                
+                <div class="options" id="options">
+                    <!-- 选项将通过JavaScript动态生成 -->
+                </div>
+                
+                <button class="next-button" id="next-button">下一题</button>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2023 奥数思维乐园 - 专为二年级学生设计 | 通过游戏化学习培养数学思维能力</p>
+            <p>建议在家长或老师的指导下使用</p>
+        </footer>
+    </div>
+    
+    <!-- 奖励消息 -->
+    <div class="reward-message" id="reward-message">
+        <p>太棒了！你获得了一个奖励！</p>
+        <p><i class="fas fa-star" style="color: #ff9800;"></i> +10 分</p>
+    </div>
+    
+    <script>
+        // 游戏数据和状态
+        const gameData = {
+            score: 0,
+            level: 1,
+            streak: 0,
+            gamesPlayed: 0,
+            currentGame: null,
+            currentQuestion: 0,
+            totalQuestions: 5,
+            correctAnswers: 0
+        };
+        
+        // 游戏问题库
+        const questions = {
+            logic: [
+                {
+                    question: "如果 △ + △ = 4，那么 △ 等于多少？",
+                    options: ["1", "2", "3", "4"],
+                    answer: 1
+                },
+                {
+                    question: "观察数列：2, 4, 6, 8, ? 下一个数是多少？",
+                    options: ["9", "10", "12", "14"],
+                    answer: 1
+                },
+                {
+                    question: "如果 ○ + ○ + ○ = 12，那么 ○ 等于多少？",
+                    options: ["2", "3", "4", "6"],
+                    answer: 2
+                },
+                {
+                    question: "小明有3个苹果，小红比小明多2个苹果，小红有几个苹果？",
+                    options: ["3", "4", "5", "6"],
+                    answer: 2
+                },
+                {
+                    question: "观察图形：□, ○, □, ○, □, ? 下一个是什么？",
+                    options: ["□", "○", "△", "☆"],
+                    answer: 1
+                }
+            ],
+            calculation: [
+                {
+                    question: "7 + 8 = ?",
+                    options: ["14", "15", "16", "17"],
+                    answer: 1
+                },
+                {
+                    question: "12 - 5 = ?",
+                    options: ["5", "6", "7", "8"],
+                    answer: 2
+                },
+                {
+                    question: "3 × 4 = ?",
+                    options: ["7", "10", "12", "14"],
+                    answer: 2
+                },
+                {
+                    question: "18 ÷ 3 = ?",
+                    options: ["5", "6", "7", "8"],
+                    answer: 1
+                },
+                {
+                    question: "9 + 6 - 3 = ?",
+                    options: ["10", "11", "12", "13"],
+                    answer: 2
+                }
+            ],
+            pattern: [
+                {
+                    question: "观察图形序列：▲, ▲, ●, ▲, ▲, ●, ▲, ▲, ?",
+                    options: ["▲", "●", "■", "★"],
+                    answer: 1
+                },
+                {
+                    question: "下列图形中，哪一个与其他不同？",
+                    options: ["🔺", "🔺", "🔵", "🔺"],
+                    answer: 2
+                },
+                {
+                    question: "如果 🔴🟢🔵🟡 重复，下一个颜色是什么？",
+                    options: ["🔴", "🟢", "🔵", "🟡"],
+                    answer: 0
+                },
+                {
+                    question: "图形规律：□, □■, □■□, □■□■, ?",
+                    options: ["□■□■□", "■□■□■", "□■□", "■□■"],
+                    answer: 0
+                },
+                {
+                    question: "找出不同的图形：🔶, 🔶, 🔷, 🔶",
+                    options: ["第一个", "第二个", "第三个", "第四个"],
+                    answer: 2
+                }
+            ],
+            memory: [
+                {
+                    question: "记住这个数字序列：3, 6, 9。第二个数字是什么？",
+                    options: ["3", "6", "9", "12"],
+                    answer: 1
+                },
+                {
+                    question: "记住这个序列：🔵, 🔴, 🟡。第三个是什么颜色？",
+                    options: ["🔵", "🔴", "🟡", "🟢"],
+                    answer: 2
+                },
+                {
+                    question: "记住图形：△, ○, □, △。哪个图形出现了两次？",
+                    options: ["△", "○", "□", "☆"],
+                    answer: 0
+                },
+                {
+                    question: "记住数字：5, 2, 8, 5。哪个数字重复了？",
+                    options: ["5", "2", "8", "没有重复"],
+                    answer: 0
+                },
+                {
+                    question: "记住序列：左, 右, 左, 左, 右。第三个方向是什么？",
+                    options: ["左", "右", "上", "下"],
+                    answer: 0
+                }
+            ]
+        };
+        
+        // 游戏名称映射
+        const gameNames = {
+            logic: "逻辑推理",
+            calculation: "快速计算",
+            pattern: "图形规律",
+            memory: "记忆挑战"
+        };
+        
+        // DOM元素
+        const scoreElement = document.getElementById('score');
+        const levelElement = document.getElementById('level');
+        const streakElement = document.getElementById('streak');
+        const gamesPlayedElement = document.getElementById('games-played');
+        const gameCards = document.querySelectorAll('.game-card');
+        const gameArea = document.getElementById('game-area');
+        const gameTitle = document.getElementById('game-title');
+        const problemElement = document.getElementById('problem');
+        const optionsElement = document.getElementById('options');
+        const feedbackElement = document.getElementById('feedback');
+        const nextButton = document.getElementById('next-button');
+        const closeGameButton = document.getElementById('close-game');
+        const progressBar = document.getElementById('progress-bar');
+        const rewardMessage = document.getElementById('reward-message');
+        
+        // 初始化
+        function init() {
+            updateStats();
+            
+            // 为每个游戏卡片添加点击事件
+            gameCards.forEach(card => {
+                const playButton = card.querySelector('.play-button');
+                playButton.addEventListener('click', () => {
+                    const gameType = card.dataset.game;
+                    startGame(gameType);
+                });
+            });
+            
+            // 下一题按钮事件
+            nextButton.addEventListener('click', loadNextQuestion);
+            
+            // 关闭游戏按钮事件
+            closeGameButton.addEventListener('click', closeGame);
+        }
+        
+        // 更新统计信息
+        function updateStats() {
+            scoreElement.textContent = gameData.score;
+            levelElement.textContent = gameData.level;
+            streakElement.textContent = gameData.streak;
+            gamesPlayedElement.textContent = gameData.gamesPlayed;
+            
+            // 根据分数更新等级
+            if (gameData.score >= 100) gameData.level = 5;
+            else if (gameData.score >= 70) gameData.level = 4;
+            else if (gameData.score >= 50) gameData.level = 3;
+            else if (gameData.score >= 20) gameData.level = 2;
+            else gameData.level = 1;
+        }
+        
+        // 开始游戏
+        function startGame(gameType) {
+            gameData.currentGame = gameType;
+            gameData.currentQuestion = 0;
+            gameData.correctAnswers = 0;
+            gameData.gamesPlayed++;
+            
+            // 显示游戏区域
+            gameArea.style.display = 'block';
+            gameTitle.textContent = gameNames[gameType] + '游戏';
+            
+            // 滚动到游戏区域
+            gameArea.scrollIntoView({ behavior: 'smooth' });
+            
+            // 加载第一个问题
+            loadQuestion();
+            
+            updateStats();
+        }
+        
+        // 加载问题
+        function loadQuestion() {
+            const gameType = gameData.currentGame;
+            const questionIndex = gameData.currentQuestion;
+            const question = questions[gameType][questionIndex];
+            
+            // 更新问题文本
+            problemElement.textContent = question.question;
+            
+            // 更新进度条
+            const progressPercent = (questionIndex / gameData.totalQuestions) * 100;
+            progressBar.style.width = `${progressPercent}%`;
+            
+            // 清空反馈
+            feedbackElement.textContent = '';
+            feedbackElement.className = 'feedback';
+            
+            // 隐藏下一题按钮
+            nextButton.style.display = 'none';
+            
+            // 生成选项
+            optionsElement.innerHTML = '';
+            question.options.forEach((option, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.className = 'option';
+                optionElement.textContent = option;
+                optionElement.dataset.index = index;
+                
+                optionElement.addEventListener('click', () => {
+                    checkAnswer(index, question.answer);
+                });
+                
+                optionsElement.appendChild(optionElement);
+            });
+        }
+        
+        // 检查答案
+        function checkAnswer(selectedIndex, correctIndex) {
+            const options = document.querySelectorAll('.option');
+            
+            // 禁用所有选项
+            options.forEach(option => {
+                option.style.pointerEvents = 'none';
+            });
+            
+            // 显示正确答案和反馈
+            if (selectedIndex === correctIndex) {
+                // 正确答案
+                options[selectedIndex].style.backgroundColor = '#c8e6c9';
+                options[selectedIndex].style.borderColor = '#4caf50';
+                
+                feedbackElement.textContent = '太棒了！答对了！';
+                feedbackElement.className = 'feedback correct';
+                
+                gameData.score += 10;
+                gameData.streak++;
+                gameData.correctAnswers++;
+                
+                // 如果连续答对3题，给予额外奖励
+                if (gameData.streak % 3 === 0) {
+                    showReward();
+                    gameData.score += 10;
+                }
+            } else {
+                // 错误答案
+                options[selectedIndex].style.backgroundColor = '#ffcdd2';
+                options[selectedIndex].style.borderColor = '#ff5252';
+                
+                // 高亮显示正确答案
+                options[correctIndex].style.backgroundColor = '#c8e6c9';
+                options[correctIndex].style.borderColor = '#4caf50';
+                
+                feedbackElement.textContent = '再试一次！正确答案已高亮显示。';
+                feedbackElement.className = 'feedback incorrect';
+                
+                gameData.streak = 0;
+            }
+            
+            // 显示下一题按钮
+            nextButton.style.display = 'block';
+            
+            updateStats();
+        }
+        
+        // 加载下一题
+        function loadNextQuestion() {
+            gameData.currentQuestion++;
+            
+            if (gameData.currentQuestion < gameData.totalQuestions) {
+                loadQuestion();
+            } else {
+                // 游戏结束，显示结果
+                endGame();
+            }
+        }
+        
+        // 结束游戏
+        function endGame() {
+            const percentage = (gameData.correctAnswers / gameData.totalQuestions) * 100;
+            
+            problemElement.innerHTML = `
+                <h3>游戏结束！</h3>
+                <p>你在 ${gameNames[gameData.currentGame]} 游戏中答对了 ${gameData.correctAnswers} 题，共 ${gameData.totalQuestions} 题</p>
+                <p>正确率：${percentage}%</p>
+                <p>本次获得：${gameData.correctAnswers * 10} 分</p>
+            `;
+            
+            optionsElement.innerHTML = '';
+            feedbackElement.textContent = '';
+            nextButton.style.display = 'none';
+            
+            // 更新进度条
+            progressBar.style.width = '100%';
+            
+            // 显示重新开始按钮
+            const restartButton = document.createElement('button');
+            restartButton.textContent = '再玩一次';
+            restartButton.className = 'play-button';
+            restartButton.style.marginTop = '20px';
+            restartButton.addEventListener('click', () => {
+                startGame(gameData.currentGame);
+            });
+            
+            optionsElement.appendChild(restartButton);
+        }
+        
+        // 关闭游戏
+        function closeGame() {
+            gameArea.style.display = 'none';
+        }
+        
+        // 显示奖励动画
+        function showReward() {
+            // 显示奖励消息
+            rewardMessage.style.display = 'block';
+            
+            // 创建彩色纸屑效果
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = `${Math.random() * 100}vw`;
+                confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 60%)`;
+                confetti.style.animation = `confetti ${Math.random() * 2 + 1}s linear forwards`;
+                
+                document.body.appendChild(confetti);
+                
+                // 移除纸屑元素
+                setTimeout(() => {
+                    confetti.remove();
+                }, 3000);
+            }
+            
+            // 2秒后隐藏奖励消息
+            setTimeout(() => {
+                rewardMessage.style.display = 'none';
+            }, 2000);
+        }
+        
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
